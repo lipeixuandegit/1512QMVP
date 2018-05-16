@@ -96,14 +96,14 @@ public class ListActivity extends BaseActivity<ListPresenter> implements ListCon
         if  (adapter == null) {
                 return;
         }
-        /*adapter.setOnListItemClickListener(new XrvListAdapter.OnListItemClickListener() {
+        adapter.setOnListItemClickListener(new XrvListAdapter.OnListItemClickListener() {
             @Override
             public void OnItemClick(ProductsBean.DataBean dataBean) {
                 Intent intent = new Intent(ListActivity.this, ListDetailsActivity.class);
                 intent.putExtra("bean", dataBean);
                 startActivity(intent);
             }
-        });*/
+        });
 
     }
 }
