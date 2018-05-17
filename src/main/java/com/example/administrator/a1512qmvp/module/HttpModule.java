@@ -35,6 +35,7 @@ public class HttpModule {
                 .readTimeout(20, TimeUnit.SECONDS)
                 .connectTimeout(10, TimeUnit.SECONDS);
     }
+    @Provides
     LoginApi provideLoginApi(OkHttpClient.Builder builder) {
 
         Retrofit retrofit = new Retrofit.Builder()

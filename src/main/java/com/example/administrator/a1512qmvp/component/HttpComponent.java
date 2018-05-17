@@ -25,5 +25,5 @@ public interface HttpComponent {
 
     void inject(ListDetailsActivity listDetailsActivity);
 
-    //void inject(LoginActivity loginActivity);
+    void inject(LoginActivity loginActivity);
 }
