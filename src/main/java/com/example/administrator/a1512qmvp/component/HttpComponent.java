@@ -5,6 +5,8 @@ import com.example.administrator.a1512qmvp.ui.HomePage.HomePageFragment;
 import com.example.administrator.a1512qmvp.ui.classfy.ClasssfyFragment;
 import com.example.administrator.a1512qmvp.ui.classfy.Contract.ClassfyContract;
 import com.example.administrator.a1512qmvp.ui.classfy.ListActivity;
+import com.example.administrator.a1512qmvp.ui.classfy.ListDetailsActivity;
+import com.example.administrator.a1512qmvp.ui.login.LoginActivity;
 
 import dagger.Component;
 
@@ -14,9 +16,14 @@ import dagger.Component;
 @Component(modules = HttpModule.class)
 public interface HttpComponent {
 
+
     void inject (HomePageFragment homePageFragment);
 
     void inject(ClasssfyFragment classsfyFragment);
 
     void inject (ListActivity ListActivity);
+
+    void inject(ListDetailsActivity listDetailsActivity);
+
+    void inject(LoginActivity loginActivity);
 }

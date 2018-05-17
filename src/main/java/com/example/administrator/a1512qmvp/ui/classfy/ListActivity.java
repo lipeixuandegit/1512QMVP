@@ -25,6 +25,7 @@ public class ListActivity extends BaseActivity<ListPresenter> implements ListCon
     private int pscid;
     private boolean isRefresh = true;
     private XrvListAdapter adapter;
+    public static final int LISTACTIVITY = 1;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +102,7 @@ public class ListActivity extends BaseActivity<ListPresenter> implements ListCon
             public void OnItemClick(ProductsBean.DataBean dataBean) {
                 Intent intent = new Intent(ListActivity.this, ListDetailsActivity.class);
                 intent.putExtra("bean", dataBean);
+                intent.putExtra("flag", LISTACTIVITY);
                 startActivity(intent);
             }
         });

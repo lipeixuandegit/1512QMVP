@@ -40,6 +40,7 @@ public class HomePageFragment extends BaseFragment<HomePagePresenter> implements
     private RecyclerView rvSecKill;
     private RecyclerView rvRecommend;
     private ImageView ivZxing;
+    public static final int HOMEPAGE_FRAGMENT = 0;
 
     @Override
     public int getContentLayout() {
