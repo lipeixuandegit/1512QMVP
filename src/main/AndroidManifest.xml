@@ -71,10 +71,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.login.LoginActivity"></activity>
+        <activity android:name=".ui.login.LoginActivity" />
         <activity android:name=".WebViewActivity" />
         <activity android:name=".ui.classfy.ListActivity" />
         <activity android:name=".ui.classfy.ListDetailsActivity" />
+        <activity android:name=".ui.classfy.BannerDetailsActivity"></activity>
     </application>
 
 </manifest>
