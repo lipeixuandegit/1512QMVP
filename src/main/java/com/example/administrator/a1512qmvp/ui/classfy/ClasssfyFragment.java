@@ -58,6 +58,7 @@ public class ClasssfyFragment extends BaseFragment<ClassfyPresenter> implements 
         mRvLeft = (RecyclerView) view.findViewById(R.id.rvLeft);
         mIv = (ImageView) view.findViewById(R.id.iv);
         mElv = (ExpandableListView) view.findViewById(R.id.elv);
+        mIv.setBackgroundResource(R.drawable.timg);
         mPresenter.getCatagory();
     }
 

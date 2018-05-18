@@ -7,12 +7,19 @@ import com.example.administrator.a1512qmvp.net.AddCartApiService;
 import com.example.administrator.a1512qmvp.net.Api;
 import com.example.administrator.a1512qmvp.net.CatagoryApi;
 import com.example.administrator.a1512qmvp.net.CatagoryApiService;
+import com.example.administrator.a1512qmvp.net.DeleteCartApi;
+import com.example.administrator.a1512qmvp.net.DeleteCartApiService;
+import com.example.administrator.a1512qmvp.net.GetCartApi;
+import com.example.administrator.a1512qmvp.net.GetCartApiService;
 import com.example.administrator.a1512qmvp.net.ListApi;
 import com.example.administrator.a1512qmvp.net.ListApiService;
 import com.example.administrator.a1512qmvp.net.LoginApi;
 import com.example.administrator.a1512qmvp.net.LoginApiService;
+import com.example.administrator.a1512qmvp.net.MyInterceptor;
 import com.example.administrator.a1512qmvp.net.ProductCatagoryApi;
 import com.example.administrator.a1512qmvp.net.ProductCatagoryApiService;
+import com.example.administrator.a1512qmvp.net.UpdateCartApi;
+import com.example.administrator.a1512qmvp.net.UpdateCartApiService;
 
 import java.util.concurrent.TimeUnit;
 
@@ -93,6 +100,7 @@ public class HttpModule {
     }
     @Provides
     AddCartApi provideAddCartApi(OkHttpClient.Builder builder) {
+        builder.addInterceptor(new MyInterceptor());
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api.BASEURL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -101,6 +109,41 @@ public class HttpModule {
                 .build();
         AddCartApiService addCartApiService = retrofit.create(AddCartApiService.class);
         return AddCartApi.getAddCartApi(addCartApiService);
+    }
+    @Provides
+    GetCartApi provideGetCartApi(OkHttpClient.Builder builder) {
+        builder.addInterceptor(new MyInterceptor());
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASEURL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(builder.build())
+                .build();
+        GetCartApiService getCartApiService = retrofit.create(GetCartApiService.class);
+        return GetCartApi.getGetCartApi(getCartApiService);
+    }
+    @Provides
+    UpdateCartApi provideUpdateCartApi(OkHttpClient.Builder builder) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASEURL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(builder.build())
+                .build();
+        UpdateCartApiService updateCartApiService = retrofit.create(UpdateCartApiService.class);
+        return UpdateCartApi.getUpdateCartApi(updateCartApiService);
+    }
+
+    @Provides
+    DeleteCartApi provideDeleteCartApi(OkHttpClient.Builder builder) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASEURL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(builder.build())
+                .build();
+        DeleteCartApiService deleteCartApiService = retrofit.create(DeleteCartApiService.class);
+        return DeleteCartApi.getDeleteCartApi(deleteCartApiService);
     }
 
 }
