@@ -49,5 +49,15 @@ dependencies {
     implementation 'com.amap.api:map2d:latest.integration'
     implementation 'com.amap.api:location:latest.integration'
     implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation files('libs/umeng-common-1.5.1.jar')
+    implementation files('libs/umeng-debug-1.0.0.jar')
+    implementation files('libs/umeng-share-core-6.9.1.jar')
+    implementation files('libs/umeng-share-QQ-simplify-6.9.1.jar')
+    implementation files('libs/umeng-share-sina-simplify-6.9.1.jar')
+    implementation files('libs/umeng-share-wechat-simplify-6.9.1.jar')
+    implementation files('libs/umeng-shareboard-widget-6.9.1.jar')
+    implementation files('libs/umeng-sharetool-6.9.1.jar')
+    implementation files('libs/utdid4all-1.1.5.3_proguard.jar')
 }
+
 

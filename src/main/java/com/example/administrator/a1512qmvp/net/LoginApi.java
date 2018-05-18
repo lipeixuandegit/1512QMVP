@@ -4,15 +4,13 @@ package com.example.administrator.a1512qmvp.net;
 
 import com.example.administrator.a1512qmvp.bean.UserBean;
 
-import javax.inject.Inject;
-
 import io.reactivex.Observable;
 
 public class LoginApi {
     private static LoginApi loginApi;
     private LoginApiService loginApiService;
-    @Inject
-    public LoginApi(LoginApiService loginApiService) {
+
+    private LoginApi(LoginApiService loginApiService) {
         this.loginApiService = loginApiService;
     }
 

@@ -14,6 +14,7 @@ import com.example.administrator.a1512qmvp.WebViewActivity;
 import com.example.administrator.a1512qmvp.bean.AdBean;
 import com.example.administrator.a1512qmvp.bean.CatagoryBean;
 import com.example.administrator.a1512qmvp.component.DaggerHttpComponent;
+import com.example.administrator.a1512qmvp.inter.OnItemClickListener;
 import com.example.administrator.a1512qmvp.module.HttpModule;
 import com.example.administrator.a1512qmvp.ui.HomePage.Contract.HomePageContract;
 import com.example.administrator.a1512qmvp.ui.HomePage.Persenter.HomePagePresenter;
@@ -21,6 +22,7 @@ import com.example.administrator.a1512qmvp.ui.HomePage.adapter.RvClassAdapter;
 import com.example.administrator.a1512qmvp.ui.HomePage.adapter.RvRecommendAdapter;
 import com.example.administrator.a1512qmvp.ui.HomePage.adapter.RvSecKillAdapter;
 import com.example.administrator.a1512qmvp.ui.base.BaseFragment;
+import com.example.administrator.a1512qmvp.ui.classfy.ListDetailsActivity;
 import com.example.administrator.a1512qmvp.utils.GlideImageLoader;
 import com.sunfusheng.marqueeview.MarqueeView;
 import com.youth.banner.Banner;
@@ -108,7 +110,7 @@ public class HomePageFragment extends BaseFragment<HomePagePresenter> implements
     }
 
     @Override
-    public void getAdSuccess(AdBean adBean) {
+    public void getAdSuccess(final AdBean adBean) {
         final List<AdBean.DataBean> data = adBean.getData();
         List<String> images = new ArrayList<>();
         for (int i = 0; i < data.size(); i++) {
@@ -136,6 +138,23 @@ public class HomePageFragment extends BaseFragment<HomePagePresenter> implements
 
         RvRecommendAdapter rvRecommendAdapter = new RvRecommendAdapter(getActivity(), adBean.getTuijian().getList());
         rvRecommend.setAdapter(rvRecommendAdapter);
+        rvRecommendAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                //跳转到详情页
+                Intent intent = new Intent(getActivity(), ListDetailsActivity.class);
+                AdBean.TuijianBean.ListBean listBean = adBean.getTuijian().getList().get(position);
+                intent.putExtra("flag", HOMEPAGE_FRAGMENT);
+                intent.putExtra("bean", listBean);
+                startActivity(intent);
+            }
+
+            @Override
+            public void OnLongClick(int position) {
+
+            }
+        });
+
     }
 
     @Override
