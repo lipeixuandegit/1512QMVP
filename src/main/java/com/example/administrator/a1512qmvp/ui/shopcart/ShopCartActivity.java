@@ -11,8 +11,10 @@ import android.widget.TextView;
 import com.example.administrator.a1512qmvp.R;
 import com.example.administrator.a1512qmvp.bean.GetCartsBean;
 import com.example.administrator.a1512qmvp.bean.SellerBean;
+import com.example.administrator.a1512qmvp.bean.eventbus.MessageEvent;
 import com.example.administrator.a1512qmvp.component.DaggerHttpComponent;
 import com.example.administrator.a1512qmvp.ui.base.BaseActivity;
+import com.example.administrator.a1512qmvp.ui.mine.MakeSureOrderActivity;
 import com.example.administrator.a1512qmvp.ui.shopcart.Adapter.ElvShopcartAdapter;
 import com.example.administrator.a1512qmvp.ui.shopcart.Contract.ShopcartContract;
 import com.example.administrator.a1512qmvp.ui.shopcart.Presenter.ShopcartPresenter;
@@ -88,7 +90,7 @@ public class ShopCartActivity extends BaseActivity<ShopcartPresenter> implements
         mTvTotal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Intent intent = new Intent(ShopCartActivity.this, MakeSureOrderActivity.class);
+                Intent intent = new Intent(ShopCartActivity.this, MakeSureOrderActivity.class);
                 startActivity(intent);
                 //把用户选中的商品传过去
                 List<SellerBean> gList = adapter.getGroupList();
@@ -96,7 +98,7 @@ public class ShopCartActivity extends BaseActivity<ShopcartPresenter> implements
                 MessageEvent messageEvent = new MessageEvent();
                 messageEvent.setcList(cList);
                 messageEvent.setgList(gList);
-                EventBus.getDefault().postSticky(messageEvent);*/
+                EventBus.getDefault().postSticky(messageEvent);
 
             }
         });

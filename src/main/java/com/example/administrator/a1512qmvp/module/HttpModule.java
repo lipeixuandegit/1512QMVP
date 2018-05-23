@@ -4,9 +4,13 @@ import com.example.administrator.a1512qmvp.net.AdApi;
 import com.example.administrator.a1512qmvp.net.AdApiService;
 import com.example.administrator.a1512qmvp.net.AddCartApi;
 import com.example.administrator.a1512qmvp.net.AddCartApiService;
+import com.example.administrator.a1512qmvp.net.AddrsApi;
+import com.example.administrator.a1512qmvp.net.AddrsApiService;
 import com.example.administrator.a1512qmvp.net.Api;
 import com.example.administrator.a1512qmvp.net.CatagoryApi;
 import com.example.administrator.a1512qmvp.net.CatagoryApiService;
+import com.example.administrator.a1512qmvp.net.CreateOrderApi;
+import com.example.administrator.a1512qmvp.net.CreateOrderApiService;
 import com.example.administrator.a1512qmvp.net.DeleteCartApi;
 import com.example.administrator.a1512qmvp.net.DeleteCartApiService;
 import com.example.administrator.a1512qmvp.net.GetCartApi;
@@ -20,6 +24,8 @@ import com.example.administrator.a1512qmvp.net.ProductCatagoryApi;
 import com.example.administrator.a1512qmvp.net.ProductCatagoryApiService;
 import com.example.administrator.a1512qmvp.net.UpdateCartApi;
 import com.example.administrator.a1512qmvp.net.UpdateCartApiService;
+import com.example.administrator.a1512qmvp.net.UpdateHeaderApi;
+import com.example.administrator.a1512qmvp.net.UpdateHeaderApiService;
 
 import java.util.concurrent.TimeUnit;
 
@@ -145,5 +151,41 @@ public class HttpModule {
         DeleteCartApiService deleteCartApiService = retrofit.create(DeleteCartApiService.class);
         return DeleteCartApi.getDeleteCartApi(deleteCartApiService);
     }
+    @Provides
+    AddrsApi provideAddrsApi(OkHttpClient.Builder builder) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASEURL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(builder.build())
+                .build();
+        AddrsApiService addrsApiService = retrofit.create(AddrsApiService.class);
+        return AddrsApi.getAddrsApi(addrsApiService);
+    }
+
+    @Provides
+    CreateOrderApi provideCreateOrderApi(OkHttpClient.Builder builder) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASEURL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(builder.build())
+                .build();
+        CreateOrderApiService createOrderApiService = retrofit.create(CreateOrderApiService.class);
+        return CreateOrderApi.getCreateOrderApi(createOrderApiService);
+    }
+
+    @Provides
+    UpdateHeaderApi provideUpdateHeaderApi(OkHttpClient.Builder builder) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASEURL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(builder.build())
+                .build();
+        UpdateHeaderApiService updateHeaderApiService = retrofit.create(UpdateHeaderApiService.class);
+        return UpdateHeaderApi.getUpdateHeaderApi(updateHeaderApiService);
+    }
+
 
 }

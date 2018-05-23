@@ -138,7 +138,7 @@ public class ListDetailsActivity extends BaseActivity<AddCartPresenter> implemen
             default:
                 break;
             case R.id.ivShare:
-                /*UMWeb umWeb=null;
+                UMWeb umWeb=null;
                 if (flag==ListActivity.LISTACTIVITY){
                     umWeb= new UMWeb(bean.getDetailUrl());
                 }else {
@@ -149,7 +149,7 @@ public class ListDetailsActivity extends BaseActivity<AddCartPresenter> implemen
                 new ShareAction(ListDetailsActivity.this).withMedia(umWeb).setDisplayList(SHARE_MEDIA.SINA,
                         SHARE_MEDIA.QQ,
                         SHARE_MEDIA.WEIXIN)
-                        .setCallback(shareListener).open();*/
+                        .setCallback(shareListener).open();
 
 
         break;

@@ -1,12 +1,9 @@
 package com.example.administrator.a1512qmvp.net;
 
+
 import com.example.administrator.a1512qmvp.bean.BaseBean;
 
 import io.reactivex.Observable;
-
-/**
- * Created by Administrator on 2018/5/18.
- */
 
 public class UpdateCartApi {
     private static UpdateCartApi updateCartApi;

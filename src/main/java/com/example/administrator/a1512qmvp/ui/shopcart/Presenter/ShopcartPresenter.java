@@ -44,7 +44,7 @@ public class ShopcartPresenter extends BasePresenter<ShopcartContract.View> impl
                     public void accept(GetCartsBean getCartsBean) throws Exception {
                         List<SellerBean> groupList=new ArrayList<>();
                         List<List<GetCartsBean.DataBean.ListBean>> childList=new ArrayList<>();
-                        List<GetCartsBean.DataBean> data = getCartsBean.getData();
+                            List<GetCartsBean.DataBean> data = getCartsBean.getData();
                         if (data==null){
                             return;
                         }

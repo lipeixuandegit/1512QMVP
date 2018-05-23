@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import com.example.administrator.a1512qmvp.ui.HomePage.HomePageFragment;
 import com.example.administrator.a1512qmvp.ui.base.BaseActivity;
 import com.example.administrator.a1512qmvp.ui.classfy.ClasssfyFragment;
+import com.example.administrator.a1512qmvp.ui.mine.MyFragment;
 
 public class MainActivity extends BaseActivity {
     /*
@@ -30,6 +31,7 @@ public class MainActivity extends BaseActivity {
     private FragmentManager fragmentManager;
     private HomePageFragment homePageFragment;
     private ClasssfyFragment classsfyFragment;
+    private MyFragment myFragment;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class MainActivity extends BaseActivity {
         fragmentManager = getSupportFragmentManager();
         classsfyFragment = new ClasssfyFragment();
         homePageFragment = new HomePageFragment();
+        myFragment = new MyFragment();
         fragmentManager.beginTransaction().replace(R.id.flContent, homePageFragment)
                 .commit();
         mRbHomepage.setChecked(true);
@@ -86,7 +89,7 @@ public class MainActivity extends BaseActivity {
                             return;
                         }
                         currentIndex=5;
-                        //fragmentManager.beginTransaction().replace(R.id.flContent,classsfyFragment).commit();
+                        fragmentManager.beginTransaction().replace(R.id.flContent,myFragment).commit();
                         break;
 
                 }
