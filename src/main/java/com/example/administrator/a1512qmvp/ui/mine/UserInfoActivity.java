@@ -17,6 +17,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.dash.zxinglibrary.decoding.Intents;
 import com.example.administrator.a1512qmvp.R;
 import com.example.administrator.a1512qmvp.component.DaggerHttpComponent;
 import com.example.administrator.a1512qmvp.module.HttpModule;
@@ -127,6 +128,10 @@ public class UserInfoActivity extends BaseActivity<UpdatePresenter> implements U
                 }
 
                 break;
+            case PHOTO_REQUEST_GALLERY:
+                startPhotoZoom(data.getData());
+
+                break;
         }
     }
 
@@ -173,6 +178,10 @@ public class UserInfoActivity extends BaseActivity<UpdatePresenter> implements U
                 break;
             case R.id.btn_pick_photo:
 
+                Intent packIntent = new Intent(Intent.ACTION_PICK, null);
+                packIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
+                startActivityForResult(packIntent,PHOTO_REQUEST_GALLERY);
+
                 if (popupWindow != null && popupWindow.isShowing()) {
                     popupWindow.dismiss();
                 }
@@ -183,7 +192,7 @@ public class UserInfoActivity extends BaseActivity<UpdatePresenter> implements U
     private void takePhoto() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imgFile));
-        startActivityForResult(intent, PHOTO_REQUEST_TAKEPHOTO);
+        startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
 
     }
 

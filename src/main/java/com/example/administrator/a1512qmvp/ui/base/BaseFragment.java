@@ -33,7 +33,9 @@ public abstract class BaseFragment <T extends BaseContract.BasePresenter>  exten
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPresenter.detachView();
+        if (mPresenter != null) {
+            mPresenter.detachView();
+        }
     }
 
     @Nullable
