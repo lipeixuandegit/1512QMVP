@@ -8,6 +8,7 @@ import com.example.administrator.a1512qmvp.ui.classfy.ListActivity;
 import com.example.administrator.a1512qmvp.ui.classfy.ListDetailsActivity;
 import com.example.administrator.a1512qmvp.ui.login.LoginActivity;
 import com.example.administrator.a1512qmvp.ui.mine.MakeSureOrderActivity;
+import com.example.administrator.a1512qmvp.ui.mine.MyFragment;
 import com.example.administrator.a1512qmvp.ui.mine.UserInfoActivity;
 import com.example.administrator.a1512qmvp.ui.shopcart.ShopCartActivity;
 
@@ -35,4 +36,6 @@ public interface HttpComponent {
     void inject(MakeSureOrderActivity makeSureOrderActivity);
 
     void inject(UserInfoActivity userInfoActivity);
+
+    void inject(MyFragment myFragment);
 }

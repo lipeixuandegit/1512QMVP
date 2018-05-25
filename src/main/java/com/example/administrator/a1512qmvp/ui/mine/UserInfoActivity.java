@@ -27,7 +27,10 @@ import com.example.administrator.a1512qmvp.ui.mine.Contract.UpdateHeaderContract
 import com.example.administrator.a1512qmvp.ui.mine.Presenter.UpdatePresenter;
 import com.example.administrator.a1512qmvp.utils.SharedPreferencesUtils;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class UserInfoActivity extends BaseActivity<UpdatePresenter> implements UpdateHeaderContract.View, View.OnClickListener {
 
@@ -108,32 +111,7 @@ public class UserInfoActivity extends BaseActivity<UpdatePresenter> implements U
         startActivityForResult(intent, PHOTO_REQUEST_CUT);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode) {
-            case PHOTO_REQUEST_TAKEPHOTO:
-                if (resultCode == Activity.RESULT_OK) {
-                    //截取图片
-                    startPhotoZoom(Uri.fromFile(imgFile));
-                }
-                break;
-            case PHOTO_REQUEST_CUT:
-                //截图图片成功
-                Bundle bundle = data.getExtras();
-                if (bundle != null) {
-                    photo = bundle.getParcelable("data");
-                    //上传头像
-                    mPresenter.updateHeader(getUid(), imgPath);
 
-                }
-
-                break;
-            case PHOTO_REQUEST_GALLERY:
-                startPhotoZoom(data.getData());
-
-                break;
-        }
-    }
 
     @Override
     public void updateSuccess(String code) {
@@ -177,10 +155,11 @@ public class UserInfoActivity extends BaseActivity<UpdatePresenter> implements U
                 }
                 break;
             case R.id.btn_pick_photo:
-
+                //点击调用相册
                 Intent packIntent = new Intent(Intent.ACTION_PICK, null);
-                packIntent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,"image/*");
-                startActivityForResult(packIntent,PHOTO_REQUEST_GALLERY);
+                //从相册中上传服务器图片类型
+                packIntent.setType("image/*");
+                startActivityForResult(packIntent, PHOTO_REQUEST_GALLERY);
 
                 if (popupWindow != null && popupWindow.isShowing()) {
                     popupWindow.dismiss();
@@ -192,7 +171,7 @@ public class UserInfoActivity extends BaseActivity<UpdatePresenter> implements U
     private void takePhoto() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imgFile));
-        startActivityForResult(intent, PHOTO_REQUEST_GALLERY);
+        startActivityForResult(intent, PHOTO_REQUEST_TAKEPHOTO);
 
     }
 
@@ -211,5 +190,32 @@ public class UserInfoActivity extends BaseActivity<UpdatePresenter> implements U
         btn_cancel.setOnClickListener(this);
         btn_pick_photo.setOnClickListener(this);
         btn_take_photo.setOnClickListener(this);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case PHOTO_REQUEST_TAKEPHOTO:
+                if (resultCode == Activity.RESULT_OK) {
+                    //截取图片
+                    startPhotoZoom(Uri.fromFile(imgFile));
+                }
+                break;
+            case PHOTO_REQUEST_CUT:
+                //截图图片成功
+                Bundle bundle = data.getExtras();
+                if (bundle != null) {
+                    photo = bundle.getParcelable("data");
+                    //上传头像
+                    mPresenter.updateHeader(getUid(), imgPath);
+
+                }
+
+                break;
+            case PHOTO_REQUEST_GALLERY:
+
+                startPhotoZoom(data.getData());
+
+                break;
+        }
     }
 }
